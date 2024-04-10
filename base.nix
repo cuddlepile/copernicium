@@ -7,6 +7,9 @@
     initrd.systemd.enable = true;
   };
 
+  powerManagement.cpuFreqGovernor = mkDefault "performance";
+
+
   networking = {
     hostName = "copernicium";
     domain = "";
