@@ -22,8 +22,9 @@
     enable = true;
     networks."10-wan" = {
       matchConfig.Name = "ens18";
-      networkConfig.DHCP = "ipv4";
+      #networkConfig.DHCP = "ipv4";
       address = [
+        "173.212.230.176/32"
         # replace this address with the one assigned to your instance
         "2a02:c207:2047:8280:0000:0000:0000:0001/64"
       ];
