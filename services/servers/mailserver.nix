@@ -33,6 +33,4 @@
     certificateScheme = "acme-nginx";
     openFirewall = true;
   };
-  security.acme.acceptTerms = true;
-  security.acme.defaults.email = "security@vollpfosten.party";
 }
