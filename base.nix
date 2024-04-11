@@ -49,6 +49,9 @@
     };
   };
 
+  security.sudo.wheelNeedsPassword = false;
+
+
   environment.systemPackages = with pkgs; [ neovim git tmux htop ];
   programs.zsh.enable = true;
 
