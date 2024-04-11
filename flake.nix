@@ -43,6 +43,12 @@
           # you want to have a matching entry in your ssh config
           deployment = {
             targetHost = "grysh";
+            targetUser = "builder";
+            privilegeEscalationCommand = [
+              "sudo"
+              "-H"
+              "--"
+            ];
             buildOnTarget = true;
           };
           imports = [
