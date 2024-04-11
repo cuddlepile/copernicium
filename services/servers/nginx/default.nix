@@ -3,6 +3,7 @@
 {
   imports = [
     ./nextcloud.nix
+    ./jellyfin.nix
   ];
 
   users.users.nginx.extraGroups = [ "acme" ];
@@ -15,5 +16,9 @@
       webroot = "/var/lib/acme/challenges-cloud";
       group = "nginx";    
     };
+    certs."media.gaykitty.lol" = {
+    webroot = "/var/lib/acme/challenges-jellyfin";
+    group = "nginx";    
+  };
   };
 }
