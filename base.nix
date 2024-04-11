@@ -5,13 +5,18 @@
   boot = {
     tmp.cleanOnBoot = true;
     initrd.systemd.enable = true;
+    kernel.sysctl."net.ipv4.ip_forward" = 1;
+      boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = "1";
   };
 
   networking = {
     hostName = "copernicium";
     domain = "";
 
-    firewall.enable = true;
+    firewall = {
+      enable = true;
+      trustedInterfaces = ["docker0" "ens18"];
+    };
     nftables.enable = true;
     nftables.flushRuleset = false;
     useNetworkd = true;
@@ -37,6 +42,11 @@
   virtualisation.docker = {
     enable = true;
     liveRestore = false; # if we ever want to use swarm mode this is important
+    daemon.settings = {
+      fixed-cidr-v6 = "fd00::/80";
+      ipv6 = false;
+      dns = ["8.8.8.8"];
+    };
   };
 
   environment.systemPackages = with pkgs; [ neovim git tmux htop ];
