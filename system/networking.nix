@@ -29,5 +29,22 @@
       ];
     };
   };
+# could do this with systemd-networkd
+  networking.wg-quick.interfaces = {
+    wg0 = {
+      privateKey = "0Em455d9O9EzQxcoevQdeb0MSzzsYebbUyJ1sZOymFg=";
+      address = ["10.66.184.231/32" "fc00:bbbb:bbbb:bb01::3:b8e6/128"];
+      dns = [ "10.64.0.1" ];
+
+      peers = [
+        {
+          publicKey = "zfNQqDyPmSUY8+20wxACe/wpk4Q5jpZm5iBqjXj2hk8=";
+          allowedIPs = [ "0.0.0.0/0" "::0/0" ];
+          endpoint = "138.199.6.233:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
 
 }
