@@ -15,16 +15,16 @@
 
       "catchall@vollpfosten.party" = {
         hashedPasswordFile = "/secrets/mail/vollpfosten_party_catchall";
-	aliases = ["@vollpfosten.party"];
+        aliases = [ "@vollpfosten.party" ];
       };
       "me@gry.sh" = {
         hashedPasswordFile = "/secrets/mail/gry_sh_me";
-	aliases = ["greyhash@gry.sh"];
+        aliases = [ "greyhash@gry.sh" ];
       };
 
       "catchall@gry.sh" = {
         hashedPasswordFile = "/secrets/mail/gry_sh_catchall";
-	aliases = ["@gry.sh"];
+        aliases = [ "@gry.sh" ];
       };
     };
 

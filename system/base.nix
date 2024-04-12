@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   zramSwap.enable = true;
-  
+
   boot = {
     tmp.cleanOnBoot = true;
     initrd.systemd.enable = true;
@@ -15,7 +15,7 @@
     daemon.settings = {
       fixed-cidr-v6 = "fd00::/80";
       ipv6 = false;
-      dns = ["8.8.8.8"];
+      dns = [ "8.8.8.8" ];
     };
   };
 

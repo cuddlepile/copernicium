@@ -5,11 +5,11 @@
   users.users.builder = {
     isNormalUser = true;
     createHome = false;
-    extraGroups = ["wheel"];
+    extraGroups = [ "wheel" ];
     openssh.authorizedKeys.keys = [
-     sshKeys.gryhsh
-     sshKeys.fairydust
-     sshKeys.twinkpad
+      sshKeys.gryhsh
+      sshKeys.fairydust
+      sshKeys.twinkpad
     ];
   };
 

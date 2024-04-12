@@ -1,13 +1,13 @@
 { config, pkgs, ... }: {
 
- services.fail2ban = {
-      enable = true;
-      maxretry = 5;
-      bantime = "24h";
-      bantime-increment = {
-        enable = true; # Enable increment of bantime after each violation
-        multipliers = "1 2 4 8 16 32 64";
-        overalljails = true; # Calculate the bantime based on all the violations
+  services.fail2ban = {
+    enable = true;
+    maxretry = 5;
+    bantime = "24h";
+    bantime-increment = {
+      enable = true; # Enable increment of bantime after each violation
+      multipliers = "1 2 4 8 16 32 64";
+      overalljails = true; # Calculate the bantime based on all the violations
     };
     jails = {
       apache-nohome-iptables.settings = {
@@ -19,9 +19,9 @@
         logpath = "/var/log/httpd/error_log*";
         backend = "auto";
         findtime = 600;
-        bantime  = 600;
+        bantime = 600;
         maxretry = 5;
       };
     };
   };
-}  
+}

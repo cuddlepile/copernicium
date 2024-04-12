@@ -5,7 +5,7 @@
 
   users.users.polygon = {
     isNormalUser = true;
-    extraGroups = ["wheel" "docker"];
+    extraGroups = [ "wheel" "docker" ];
     initialPassword = "changeme123!";
     shell = pkgs.zsh;
     createHome = true;

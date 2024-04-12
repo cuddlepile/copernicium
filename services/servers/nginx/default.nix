@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 
 {
   imports = [
@@ -14,11 +14,11 @@
     defaults.server = "https://acme-staging-v02.api.letsencrypt.org/directory";
     certs."cloud.gry.sh" = {
       webroot = "/var/lib/acme/challenges-cloud";
-      group = "nginx";    
+      group = "nginx";
     };
     certs."media.gaykitty.lol" = {
-    webroot = "/var/lib/acme/challenges-jellyfin";
-    group = "nginx";    
-  };
+      webroot = "/var/lib/acme/challenges-jellyfin";
+      group = "nginx";
+    };
   };
 }

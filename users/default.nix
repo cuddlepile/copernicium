@@ -1,16 +1,17 @@
-args@{config, lib, pkgs, ...}:
-let 
-sshKeys = {
- gryhsh = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFGtY0VATETxBhp7DU5iXqXMEDjsvE05nF+j+5qmPz11 gryhsh";
- fairydust = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJa7SNW7HhplKe95r9i4hyf9Sf/wUgOsYlQtqVhR8hNE polygon";
- twinkpad = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWXLbHGz3IZ9bqO0x/xct2SG3aVL0EFcqDrU8A7tll8 polygon";
-};
+args@{ config, lib, pkgs, ... }:
+let
+  sshKeys = {
+    gryhsh = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFGtY0VATETxBhp7DU5iXqXMEDjsvE05nF+j+5qmPz11 gryhsh";
+    fairydust = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJa7SNW7HhplKe95r9i4hyf9Sf/wUgOsYlQtqVhR8hNE polygon";
+    twinkpad = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJWXLbHGz3IZ9bqO0x/xct2SG3aVL0EFcqDrU8A7tll8 polygon";
+  };
 
- in {
+in
+{
   imports = [
-    (import ./greyhash.nix (args //  {inherit sshKeys;}))
-    (import ./polygon.nix (args //  {inherit sshKeys;}))
-    (import ./root.nix  (args //  {inherit sshKeys;}) )
-    (import ./builder.nix  (args //  {inherit sshKeys;}) )
+    (import ./greyhash.nix (args // { inherit sshKeys; }))
+    (import ./polygon.nix (args // { inherit sshKeys; }))
+    (import ./root.nix (args // { inherit sshKeys; }))
+    (import ./builder.nix (args // { inherit sshKeys; }))
   ];
 }
