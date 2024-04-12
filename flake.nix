@@ -52,7 +52,6 @@
             buildOnTarget = true;
           };
           imports = [
-            ./hardware-configuration.nix
             ./system
             ./services
             ./users
