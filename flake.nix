@@ -53,7 +53,7 @@
           };
           imports = [
             ./hardware-configuration.nix
-            ./base.nix
+            ./system
             ./services
             ./users
           ];
