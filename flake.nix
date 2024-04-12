@@ -4,11 +4,14 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgsUnstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.11";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs =
     { self
     , nixpkgsUnstable
     , nixpkgs
+    , home-manager
     , ...
     } @ inputs:
     let hostPkgs = import nixpkgs { system = "x86_64-linux"; };
@@ -17,7 +20,7 @@
       # dev shell to deploy to the server
       devShell."x86_64-linux" = with hostPkgs;
         mkShell {
-          buildInputs = [ colmena ];
+          buildInputs = [ colmena just ];
         };
       colmena = {
         meta = {
@@ -57,6 +60,12 @@
               ./system
               ./services
               ./users
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.polygon = import ./home/polygon/home.nix;
+              }
             ];
           };
       };

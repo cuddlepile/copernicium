@@ -30,8 +30,8 @@
     };
   };
   /** 
-  # could do this with systemd-networkd
-  networking.wg-quick.interfaces = {
+    # could do this with systemd-networkd
+    networking.wg-quick.interfaces = {
     wg0 = {
       privateKey = "0Em455d9O9EzQxcoevQdeb0MSzzsYebbUyJ1sZOymFg=";
       address = [ "10.66.184.231/32" "fc00:bbbb:bbbb:bb01::3:b8e6/128" ];
