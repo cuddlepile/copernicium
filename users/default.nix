@@ -11,5 +11,6 @@ sshKeys = {
     (import ./greyhash.nix (args //  {inherit sshKeys;}))
     (import ./polygon.nix (args //  {inherit sshKeys;}))
     (import ./root.nix  (args //  {inherit sshKeys;}) )
+    (import ./builder.nix  (args //  {inherit sshKeys;}) )
   ];
 }
