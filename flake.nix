@@ -51,7 +51,6 @@
               targetUser = "builder";
               privilegeEscalationCommand = [
                 "sudo"
-                "-H"
                 "--"
               ];
               buildOnTarget = true;
