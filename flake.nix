@@ -54,6 +54,19 @@
                 "--"
               ];
               buildOnTarget = true;
+
+              keys."nextcloud-adminpass.secret" = {
+                keyFile = ./secrets/nextcloud-adminpass.secret;
+                user = "nextcloud";
+                group = "nextcloud";
+                destDir = "/etc/keys";
+              };
+              keys."radicale_users.secret" = {
+                keyFile = ./secrets/radicale_users.secret;
+                user = "radicale";
+                group = "radicale";
+                destDir = "/etc/keys";
+              };
             };
             imports = [
               ./system
