@@ -9,6 +9,5 @@
   };
 
   imports = [
-    ./cal.nix
   ];
 }

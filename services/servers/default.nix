@@ -4,6 +4,5 @@
     ./mailserver.nix
     ./nginx
     ./nextcloud.nix
-    ./radicale.nix
   ];
 }
