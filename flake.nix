@@ -7,79 +7,70 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs =
-    { self
-    , nixpkgsUnstable
-    , nixpkgs
-    , home-manager
-    , ...
-    } @ inputs:
-    let hostPkgs = import nixpkgs { system = "x86_64-linux"; };
+  outputs = { self, nixpkgs, nixpkgsUnstable, home-manager, ... } @ inputs: 
+    let 
+      system = "x86_64-linux";
+      hostPkgs = import nixpkgs { inherit system; };
+      unstablePkgs = import nixpkgsUnstable { inherit system; };
     in {
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
-      # dev shell to deploy to the server
-      devShell."x86_64-linux" = with hostPkgs;
-        mkShell {
-          buildInputs = [ colmena just ];
-        };
+      formatter.${system} = hostPkgs.legacyPackages.${system}.nixpkgs-fmt;
+
+      # Development shell to deploy to the server
+      devShell.${system} = with hostPkgs; mkShell {
+        buildInputs = [ colmena just ];
+      };
+
       colmena = {
         meta = {
-          nixpkgs = import nixpkgs {
-            system = "x86_64-linux";
-            overlays = [ ];
-          };
+          nixpkgs = hostPkgs;
           specialArgs = {
-            inherit inputs nixpkgsUnstable;
-            pkgsUnstable = import nixpkgsUnstable {
-              system = "x86_64-linux";
-              overlays = [ ];
-            };
+            inherit inputs;
+            pkgsUnstable = unstablePkgs;
           };
         };
 
-        copernicium =
-          { name
-          , nodes
-          , pkgs
-          , pkgsUnstable
-          , inputs
-          , ...
-          }: {
-            # you want to have a matching entry in your ssh config
-            deployment = {
-              targetHost = "grysh";
-              targetUser = "builder";
-              privilegeEscalationCommand = [
-                "sudo"
-                "--"
-              ];
-              buildOnTarget = true;
+        copernicium = { name, nodes, pkgs, pkgsUnstable, inputs, ... }: {
+          # Ensure a matching entry in your SSH config
+          deployment = {
+            targetHost = "grysh";
+            targetUser = "builder";
+            privilegeEscalationCommand = [ "sudo" "--" ];
+            buildOnTarget = true;
 
-              keys."nextcloud-adminpass.secret" = {
+            keys = {
+              "nextcloud-adminpass.secret" = {
                 keyFile = ./secrets/nextcloud-adminpass.secret;
                 user = "nextcloud";
                 group = "nextcloud";
                 destDir = "/etc/keys";
               };
-              keys."radicale_users.secret" = {
+              "radicale_users.secret" = {
                 keyFile = ./secrets/radicale_users.secret;
                 user = "radicale";
                 group = "radicale";
                 destDir = "/etc/keys";
               };
+               "minecraft-rcon.password" = {
+                 keyFile = ./secrets/minecraft-rcon.password;
+                 user = "minecraft";
+                 group = "minecraft";
+                 destDir = "/etc/keys";
+               };
             };
-            imports = [
-              ./system
-              ./services
-              ./users
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.users.polygon = import ./home/polygon/home.nix;
-              }
-            ];
           };
+
+          imports = [
+            ./system
+            ./services
+            ./users
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.polygon = import ./home/polygon/home.nix;
+            }
+          ];
+        };
       };
     };
 }

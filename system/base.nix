@@ -11,7 +11,7 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  environment.systemPackages = with pkgs; [ neovim git tmux htop ];
+  environment.systemPackages = with pkgs; [ neovim git tmux htop openjdk8-bootstrap ];
   programs.zsh.enable = true;
 
   system.stateVersion = "23.11";

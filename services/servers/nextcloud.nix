@@ -2,6 +2,7 @@
 {
   services.nextcloud = {
     enable = true;
+    webfinger = true;
     hostName = "cloud.gry.sh";
     package = pkgs.nextcloud28;
     config.adminpassFile = "/etc/keys/nextcloud-adminpass.secret";
