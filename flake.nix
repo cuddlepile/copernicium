@@ -44,18 +44,9 @@
                 group = "nextcloud";
                 destDir = "/etc/keys";
               };
-              "radicale_users.secret" = {
-                keyFile = ./secrets/radicale_users.secret;
-                user = "radicale";
-                group = "radicale";
-                destDir = "/etc/keys";
-              };
-               "minecraft-rcon.password" = {
-                 keyFile = ./secrets/minecraft-rcon.password;
-                 user = "minecraft";
-                 group = "minecraft";
-                 destDir = "/etc/keys";
-               };
+	      };
+
+
             };
           };
 
